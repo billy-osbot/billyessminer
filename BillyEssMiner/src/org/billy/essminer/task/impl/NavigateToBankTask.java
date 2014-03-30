@@ -9,7 +9,7 @@ public class NavigateToBankTask implements ScriptTask {
 
 	@Override
 	public boolean activate(Miner miner) {
-		if(!miner.isInBank() && !miner.isInMine() && !miner.myPlayer().isMoving()) {
+		if(!miner.isInBank() && !miner.isInMine() && !miner.myPlayer().isMoving() && !miner.isDoorClosed()) {
 			if((!miner.hasEquippedPickaxe() && !miner.hasInventoryPickaxe()) || miner.client.getInventory().isFull()) {
 				return true;
 			}

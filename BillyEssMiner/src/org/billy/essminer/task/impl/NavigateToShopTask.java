@@ -4,7 +4,7 @@ import org.billy.essminer.Constant;
 import org.billy.essminer.Miner;
 import org.billy.essminer.task.ScriptTask;
 import org.osbot.script.MethodProvider;
-import org.osbot.script.rs2.model.NPC;
+import org.osbot.script.rs2.map.Position;
 
 public class NavigateToShopTask implements ScriptTask {
 
@@ -23,13 +23,14 @@ public class NavigateToShopTask implements ScriptTask {
 	@Override
 	public int execute(Miner miner) {
 		try {
-			NPC aubury = miner.closestNPCForName(Constant.AUBURY_NAME);
-			if(aubury != null) {
-				if(miner.walk(aubury)) {
+			if(miner.isDoorClosed()) {
+				Position pos = new Position(3253, 3398 ,miner.myPosition().getY());
+				if(miner.walk(pos)) {
 					return MethodProvider.random(1000, 2000);
 				}
 			} else {
-				if(miner.walk(Constant.VARROCK_RUNE_SHOP)) {
+				Position center = new Position(((Constant.VARROCK_RUNE_SHOP.getMaxX() + Constant.VARROCK_RUNE_SHOP.getMinX()) / 2), ((Constant.VARROCK_RUNE_SHOP.getMaxY() + Constant.VARROCK_RUNE_SHOP.getMinY()) / 2), 0);
+				if(miner.walk(center)) {
 					return MethodProvider.random(1000, 2000);
 				}
 			}

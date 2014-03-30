@@ -1,10 +1,10 @@
-package org.billy.essminer.antiban.impl;
+package org.billy.essminer.async.impl;
 
 import org.billy.essminer.Miner;
-import org.billy.essminer.antiban.AntiBanTask;
+import org.billy.essminer.async.AsyncTask;
 import org.osbot.script.MethodProvider;
 
-public class CameraMoveTask extends AntiBanTask {
+public class CameraMoveTask extends AsyncTask {
 
 	public CameraMoveTask(Miner miner) {
 		super(miner, 10, .95);

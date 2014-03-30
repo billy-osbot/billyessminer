@@ -1,16 +1,16 @@
-package org.billy.essminer.antiban;
+package org.billy.essminer.async;
 
 import org.billy.essminer.Miner;
 import org.osbot.script.MethodProvider;
 
-public abstract class AntiBanTask implements Runnable {
+public abstract class AsyncTask implements Runnable {
 	
 	private final Miner miner;
 	private final int secondsToWait;
 	private final double threshold;
 	private long lastActivated;
 
-	public AntiBanTask(Miner miner, int secondsToWait, double threshold) {
+	public AsyncTask(Miner miner, int secondsToWait, double threshold) {
 		this.miner = miner;
 		this.secondsToWait = secondsToWait;
 		this.threshold = threshold;
@@ -19,7 +19,7 @@ public abstract class AntiBanTask implements Runnable {
 	
 	public final boolean activate() {
 		if(Math.random() >= getThreshold()) {
-			if(System.currentTimeMillis() - getLastActivated() >= (getSecondsToWait() * 1000)) {
+			if((System.currentTimeMillis() - getLastActivated()) >= (getSecondsToWait() * 1000)) {
 				setLastActivated(System.currentTimeMillis());
 				return true;
 			}

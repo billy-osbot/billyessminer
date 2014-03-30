@@ -12,7 +12,9 @@ public class TeleportAuburyTask implements ScriptTask {
 	public boolean activate(Miner miner) {
 		if(miner.hasEquippedPickaxe() || miner.hasInventoryPickaxe()) {
 			if(!miner.hasRuneEssence() && miner.isInRuneShop()) {
-				return true;
+				if(!miner.isDoorClosed()) {
+					return true;
+				}
 			}
 		}
 		return false;
@@ -23,7 +25,7 @@ public class TeleportAuburyTask implements ScriptTask {
 		NPC aubury = miner.closestNPCForName(Constant.AUBURY_NAME);
 		try {
 			if(aubury.interact(Constant.AUBURY_ACTION)) {
-				return MethodProvider.random(2500, 3500);
+				return MethodProvider.random(1000, 2000);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
