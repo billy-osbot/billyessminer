@@ -18,6 +18,7 @@ import org.billy.essminer.task.impl.TeleportAuburyTask;
 import org.billy.essminer.task.impl.TeleportPortalTask;
 import org.osbot.script.Script;
 import org.osbot.script.ScriptManifest;
+import org.osbot.script.rs2.map.Position;
 import org.osbot.script.rs2.model.Item;
 import org.osbot.script.rs2.ui.EquipmentSlot;
 
@@ -39,7 +40,7 @@ public class Miner extends Script {
 	};
 	
 	private final AntiBanTask[] antibanTasks = new AntiBanTask[] {
-			new CameraMoveTask()
+			new CameraMoveTask(this)
 	};
 	
 	@Override
@@ -52,7 +53,6 @@ public class Miner extends Script {
 		for(AntiBanTask task : antibanTasks) {
 			if(task.activate()) {
 				service.execute(task);
-				break;
 			}
 		}
 		for(ScriptTask task : tasks) {
@@ -90,6 +90,19 @@ public class Miner extends Script {
 		return false;
 	}
 	
+	public boolean isPlayerWithinDistance(Position p, int distance) {
+		if(myPlayer().getX() >= p.getX() - distance) {
+			if(myPlayer().getX() <= p.getX() + distance) {
+				if(myPlayer().getY() >= p.getY() - distance) {
+					if(myPlayer().getY() <= p.getY() + distance) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
 	public boolean isInBank() {
 		return Constant.VARROCK_BANK.contains(myPlayer());
 	}
@@ -99,10 +112,7 @@ public class Miner extends Script {
 	}
 	
 	public boolean isInMine() {
-		if(myPlayer().getPosition().getY() > 7000) {
-			return true;
-		}
-		return false;
+		return closestObjectForName(Constant.RUNE_ESSENCE_NAME) != null;
 	}
 
 	public boolean hasRuneEssence() {

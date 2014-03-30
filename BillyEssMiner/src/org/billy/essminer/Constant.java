@@ -9,7 +9,6 @@ public class Constant {
 	public static final Area VARROCK_RUNE_SHOP = new Area(3250, 3399, 3255, 3404);
 	
 	public static final String RUNE_ESSENCE_NAME = "Rune essence";
-	public static final String PORTAL_NAME = "Portal";
 	public static final String BANK_NAME = "Bank booth";
 	public static final String AUBURY_NAME = "Aubury";
 	
@@ -19,6 +18,8 @@ public class Constant {
 	public static final String[] PORTAL_ACTIONS = new String[] { "Use", "Exit" };
 	
 	public static final int MINING_ANIMATION = 625;
+	
+	public static final int[] PORTAL_IDS = new int[] { 15638, 14918 };
 	
 	public static final int[] PICKAXES = new int[] { 1265 };
 	

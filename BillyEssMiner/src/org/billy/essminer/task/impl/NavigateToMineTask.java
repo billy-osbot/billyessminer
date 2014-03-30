@@ -25,7 +25,8 @@ public class NavigateToMineTask implements ScriptTask {
 		RS2Object mine = miner.closestObjectForName(Constant.RUNE_ESSENCE_NAME);
 		if(!mine.isVisible()) {
 			try {
-				if(miner.walk(mine)) {
+				miner.client.moveCameraToPosition(mine.getPosition());
+				if(miner.walkMiniMap(mine.getPosition())) {
 					return MethodProvider.random(1000, 2000);
 				}
 			} catch (InterruptedException e) {

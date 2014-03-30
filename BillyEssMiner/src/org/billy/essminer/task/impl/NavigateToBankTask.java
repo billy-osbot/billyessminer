@@ -20,7 +20,7 @@ public class NavigateToBankTask implements ScriptTask {
 	@Override
 	public int execute(Miner miner) {
 		try {
-			if(miner.walk(Constant.VARROCK_BANK)) {
+			if(miner.walk(miner.closestObjectForName(Constant.BANK_NAME))) {
 				return MethodProvider.random(1000, 2000);
 			}
 		} catch (InterruptedException e) {
@@ -28,6 +28,5 @@ public class NavigateToBankTask implements ScriptTask {
 		}
 		return 0;
 	}
-
 	
 }

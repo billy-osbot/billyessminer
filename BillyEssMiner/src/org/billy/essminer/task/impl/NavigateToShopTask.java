@@ -22,7 +22,7 @@ public class NavigateToShopTask implements ScriptTask {
 	@Override
 	public int execute(Miner miner) {
 		try {
-			if(miner.walk(Constant.VARROCK_RUNE_SHOP)) {
+			if(miner.walk(miner.closestNPCForName(Constant.AUBURY_NAME))) {
 				return MethodProvider.random(1000, 2000);
 			}
 		} catch (InterruptedException e) {
