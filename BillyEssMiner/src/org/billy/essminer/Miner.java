@@ -15,7 +15,7 @@ import org.billy.essminer.task.impl.NavigateToPortalTask;
 import org.billy.essminer.task.impl.NavigateToShopTask;
 import org.billy.essminer.task.impl.TeleportAuburyTask;
 import org.billy.essminer.task.impl.TeleportPortalTask;
-
+import org.billy.essminer.util.Constant;
 import org.osbot.script.Script;
 import org.osbot.script.ScriptManifest;
 import org.osbot.script.rs2.map.Position;
@@ -146,11 +146,11 @@ public class Miner extends Script {
 	}
 	
 	public boolean isInMine() {
-		return closestObjectForName(Constant.RUNE_ESSENCE_NAME) != null;
+		return closestObjectForName(Constant.RUNE_ESSENCE_NAMES) != null;
 	}
 
 	public boolean hasRuneEssence() {
-		return client.getInventory().contains(Constant.RUNE_ESSENCE_NAME);
+		return client.getInventory().contains(Constant.RUNE_ESSENCE_NAMES[0]) || client.getInventory().contains(Constant.RUNE_ESSENCE_NAMES[1]);
 	}
 	
 }

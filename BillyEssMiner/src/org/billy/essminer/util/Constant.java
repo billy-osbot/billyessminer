@@ -1,4 +1,4 @@
-package org.billy.essminer;
+package org.billy.essminer.util;
 
 import java.awt.Color;
 
@@ -10,7 +10,7 @@ public class Constant {
 	public static final Area VARROCK_BANK = new Area(3250, 3419, 3257, 3423);
 	public static final Area VARROCK_RUNE_SHOP = new Area(3248, 3397, 3257, 3406);
 	
-	public static final String RUNE_ESSENCE_NAME = "Rune essence";
+	public static final String[] RUNE_ESSENCE_NAMES = new String[] { "Rune essence", "Pure essence" };
 	public static final String BANK_NAME = "Bank booth";
 	public static final String AUBURY_NAME = "Aubury";
 	public static final String DOOR_NAME = "Door";

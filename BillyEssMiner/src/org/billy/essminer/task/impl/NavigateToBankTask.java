@@ -1,8 +1,8 @@
 package org.billy.essminer.task.impl;
 
-import org.billy.essminer.Constant;
 import org.billy.essminer.Miner;
 import org.billy.essminer.task.ScriptTask;
+import org.billy.essminer.util.Constant;
 import org.osbot.script.MethodProvider;
 
 public class NavigateToBankTask implements ScriptTask {

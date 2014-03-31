@@ -1,6 +1,7 @@
 package org.billy.essminer;
 
 import org.billy.essminer.task.ScriptTask;
+import org.billy.essminer.util.Constant;
 
 public class StatusTracker {
 	
@@ -18,13 +19,13 @@ public class StatusTracker {
 	
 	public void update() {
 		if(getMiner().isInMine()) {
-			long amount = getMiner().client.getInventory().getAmount(Constant.RUNE_ESSENCE_NAME);
+			long amount = getMiner().client.getInventory().getAmount(Constant.RUNE_ESSENCE_NAMES[0]) + getMiner().client.getInventory().getAmount(Constant.RUNE_ESSENCE_NAMES[1]);;
 			if(startAmount != amount) {
 				totalEssenceMined += amount - startAmount;
 				startAmount = amount;
 			}
 		} else {
-			startAmount = getMiner().client.getInventory().getAmount(Constant.RUNE_ESSENCE_NAME);
+			startAmount = getMiner().client.getInventory().getAmount(Constant.RUNE_ESSENCE_NAMES[0]) + getMiner().client.getInventory().getAmount(Constant.RUNE_ESSENCE_NAMES[1]);
 		}
 	}
 	
