@@ -3,13 +3,7 @@ package org.billy.essminer;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-import org.billy.essminer.async.AsyncTask;
-import org.billy.essminer.async.impl.CameraMoveTask;
-import org.billy.essminer.async.impl.MouseMoveTask;
-import org.billy.essminer.async.impl.RunTask;
 import org.billy.essminer.task.ScriptTask;
 import org.billy.essminer.task.impl.BankDepositTask;
 import org.billy.essminer.task.impl.BankWithdrawTask;
@@ -21,6 +15,7 @@ import org.billy.essminer.task.impl.NavigateToPortalTask;
 import org.billy.essminer.task.impl.NavigateToShopTask;
 import org.billy.essminer.task.impl.TeleportAuburyTask;
 import org.billy.essminer.task.impl.TeleportPortalTask;
+
 import org.osbot.script.Script;
 import org.osbot.script.ScriptManifest;
 import org.osbot.script.rs2.map.Position;
@@ -32,7 +27,7 @@ import org.osbot.script.rs2.ui.EquipmentSlot;
 @ScriptManifest(author = "Billy", info = "A simple open source varrock essence miner.", name = "BillyEssMiner", version = 1.0)
 public class Miner extends Script {
 	
-	private final ExecutorService service = Executors.newSingleThreadExecutor();
+	private final AsyncThread asyncThread = new AsyncThread(this);
 	private final StatusTracker statusTracker = new StatusTracker(this);
 	
 	private final ScriptTask[] tasks = new ScriptTask[] {
@@ -48,25 +43,25 @@ public class Miner extends Script {
 			new DoorOpenTask()
 	};
 	
-	private final AsyncTask[] antibanTasks = new AsyncTask[] {
-			new CameraMoveTask(this),
-			new MouseMoveTask(this),
-			new RunTask(this)
-	};
-	
 	@Override
 	public void onStart() {
 		this.experienceTracker.start(Skill.MINING);
+		asyncThread.start();
+	}
+	
+	@Override
+	public void onExit() {
+		asyncThread.running = false;
+		try {
+			asyncThread.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
 	public int onLoop() throws InterruptedException {
 		statusTracker.update();
-		for(AsyncTask task : antibanTasks) {
-			if(task.activate()) {
-				service.execute(task);
-			}
-		}
 		for(ScriptTask task : tasks) {
 			if(task.activate(this)) {
 				statusTracker.setCurrentTask(task);

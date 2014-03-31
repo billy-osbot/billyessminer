@@ -23,6 +23,8 @@ public class StatusTracker {
 				totalEssenceMined += amount - startAmount;
 				startAmount = amount;
 			}
+		} else {
+			startAmount = getMiner().client.getInventory().getAmount(Constant.RUNE_ESSENCE_NAME);
 		}
 	}
 	
