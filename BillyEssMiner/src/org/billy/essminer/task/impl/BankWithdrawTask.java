@@ -12,10 +12,8 @@ public class BankWithdrawTask implements ScriptTask {
 	public boolean activate(Miner miner) {
 		if(!miner.hasEquippedPickaxe() && !miner.hasInventoryPickaxe()) {
 			if(!miner.client.getInventory().isFull()) {
-				if(miner.client.getBank().contains(Constant.PICKAXES)) {
-					if(miner.isInBank()) {
-						return true;
-					}
+				if(miner.isInBank()) {
+					return true;
 				}
 			}
 		}

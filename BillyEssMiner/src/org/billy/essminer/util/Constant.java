@@ -23,7 +23,7 @@ public class Constant {
 	public static final int MINING_ANIMATION = 625;
 	
 	public static final int[] PORTAL_IDS = new int[] { 15638, 14918 };
-	public static final int[] PICKAXES = new int[] { 1265 };
+	public static final int[] PICKAXES = new int[] { 1275, 1273, 1271, 1269, 1267, 1265 };
 	
 	public static final Color BLACK_OPAQUE = new Color(0, 0, 0, 170);
 	

@@ -90,9 +90,11 @@ public class Miner extends Script {
 	
 	public boolean hasEquippedPickaxe() {
 		Item pickaxe = equipmentTab.getItemInSlot(EquipmentSlot.WEAPON);
-		for(int pick : Constant.PICKAXES) {
-			if(pickaxe.getId() == pick) {
-				return true;
+		if(pickaxe != null) {
+			for(int pick : Constant.PICKAXES) {
+				if(pickaxe.getId() == pick) {
+					return true;
+				}
 			}
 		}
 		return false;
@@ -101,6 +103,8 @@ public class Miner extends Script {
 	public boolean hasInventoryPickaxe() {
 		Item[] items = client.getInventory().getItems();
 		for(Item item : items) {
+			if(item == null)
+				continue;
 			for(int pick : Constant.PICKAXES) {
 				if(item.getId() == pick) {
 					return true;
