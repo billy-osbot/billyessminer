@@ -21,7 +21,7 @@ public class BankDepositTask implements ScriptTask {
 		if(miner.client.getBank().isOpen()) {
 			try {
 				if(miner.client.getBank().depositAllExcept(Constant.PICKAXES)) {
-					return MethodProvider.random(1000, 2000);
+					return MethodProvider.random(500, 1250);
 				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -31,7 +31,7 @@ public class BankDepositTask implements ScriptTask {
 			RS2Object bank = miner.closestObjectForName(Constant.BANK_NAME);
 			try {
 				if(bank.interact(Constant.BANK_ACTION)) {
-					return MethodProvider.random(1000, 2000);
+					return MethodProvider.random(1000, 1750);
 				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();

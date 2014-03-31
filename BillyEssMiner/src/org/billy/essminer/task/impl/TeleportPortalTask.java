@@ -26,6 +26,11 @@ public class TeleportPortalTask implements ScriptTask {
 		RS2Object portal = miner.closestObject(Constant.PORTAL_IDS);
 		try {
 			miner.client.moveCameraToEntity(portal);
+			for(String action : Constant.PORTAL_ACTIONS) {
+				if(portal.interact(action)) {
+					return MethodProvider.random(1000, 2000);
+				}
+			}
 			if(miner.client.moveMouseTo(portal.getMouseDestination(), false, true, false)) {
 				return MethodProvider.random(1000, 2000);
 			}

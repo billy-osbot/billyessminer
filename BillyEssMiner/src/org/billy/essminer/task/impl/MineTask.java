@@ -15,7 +15,7 @@ public class MineTask implements ScriptTask {
 				RS2Object mine = miner.closestObjectForName(Constant.RUNE_ESSENCE_NAMES);
 				if(mine != null && miner.isPlayerWithinDistance(mine.getPosition(), 3)) {
 					if(!miner.client.getInventory().isFull()) {
-						if(miner.myPlayer().getAnimation() != Constant.MINING_ANIMATION) {
+						if(miner.myPlayer().getAnimation() != Constant.MINING_ANIMATIONS[0] && miner.myPlayer().getAnimation() != Constant.MINING_ANIMATIONS[1]) {
 							return true;
 						}
 					}

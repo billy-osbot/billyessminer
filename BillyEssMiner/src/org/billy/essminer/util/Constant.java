@@ -19,8 +19,9 @@ public class Constant {
 	public static final String BANK_ACTION = "Bank";
 	public static final String AUBURY_ACTION = "Teleport";
 	public static final String DOOR_ACTION = "Open";
+	public static final String[] PORTAL_ACTIONS = new String[] { "Use", "Exit" };
 	
-	public static final int MINING_ANIMATION = 625;
+	public static final int[] MINING_ANIMATIONS = new int[] { 625, 628 };
 	
 	public static final int[] PORTAL_IDS = new int[] { 15638, 14918 };
 	public static final int[] PICKAXES = new int[] { 1275, 1273, 1271, 1269, 1267, 1265 };
